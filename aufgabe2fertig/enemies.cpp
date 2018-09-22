@@ -19,7 +19,7 @@ enemies::enemies():QObject(),QGraphicsRectItem(){
     setPos(random_number,0);
 
     //draw the rect
-    setRect(0,0,20,20);
+    setRect(0,0,35,35);
 
     //connect
     //zu erster klasse von gegner
@@ -53,13 +53,15 @@ void enemies::move(){
         if(typeid(*(colliding_items[i])) ==  typeid(myPlayer)){
             //decreaselive the score
             gamee->score1->decreaseLive();
+            //löschen von liveicon
+            //gamee->liveIcon1->deleteIcon();
             //remove enemie
             scene()->removeItem(this);
             //delete enemie
             delete this;
             //sollte eigentlich die anwendung beenden, wenn der counter größer als 4ist
             if( i>4){
-                QApplication::quit();
+             QApplication::quit();
             }
             return;
 

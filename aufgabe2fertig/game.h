@@ -4,6 +4,7 @@
 #include "player.h"
 #include "score.h"
 #include "health.h"
+#include "liveicon.h"
 
 class game : public QGraphicsView{
 public:
@@ -13,6 +14,9 @@ public:
     myPlayer * player;
     score * score1;
     health * health1;
+    liveIcon * liveIcon1;
+    liveIcon * liveIcon2;
+    liveIcon * liveIcon3;
 
 
 };

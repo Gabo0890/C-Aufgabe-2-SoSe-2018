@@ -28,11 +28,13 @@ SOURCES += main.cpp \
     enemies.cpp \
     game.cpp \
     score.cpp \
-    health.cpp
+    health.cpp \
+    liveicon.cpp
 
 HEADERS  += \
     player.h \
     enemies.h \
     game.h \
     score.h \
-    health.h
+    health.h \
+    liveicon.h

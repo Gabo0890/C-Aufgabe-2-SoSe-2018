@@ -1,4 +1,6 @@
 #include <QGraphicsTextItem>
+#include <QGraphicsRectItem>
+#include <QObject>
 
 
 class score : public QGraphicsTextItem{
@@ -9,3 +11,5 @@ public:
 private:
     int score1;
 };
+
+
