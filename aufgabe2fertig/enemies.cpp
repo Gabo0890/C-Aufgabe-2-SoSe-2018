@@ -1,4 +1,3 @@
-#include "enemies.h"
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QList>
@@ -6,6 +5,8 @@
 #include <QDebug>
 #include <QApplication>
 #include "game.h"
+#include "enemies.h"
+#include "button.h"
 
 extern game * gamee;
 
@@ -22,10 +23,15 @@ enemies::enemies():QObject(),QGraphicsRectItem(){
     setRect(0,0,35,35);
 
     //connect
-    QTimer * timer = new QTimer(this);
-    connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-    timer->start(50);
+    timer1 = new QTimer(this);
+    connect(timer1,SIGNAL(timeout()),this,SLOT(move()));
+    timer1->start(50);
 
+
+connect(gamee->stopbutton,SIGNAL(clicked()),SLOT(stop()));
+
+//resume connect
+connect(gamee->resumebutton,SIGNAL(clicked()),SLOT(resume()));
 }
 
 
@@ -61,5 +67,19 @@ void enemies::move(){
             scene()->removeItem(this);
             delete this;
 
-           }
+        }
 }
+
+void enemies::stop()
+{
+    timer1->stop();
+}
+
+void enemies::resume()
+{
+    timer1->start();
+}
+
+//um timer zu reaktivieren
+//void enemies::resume()
+

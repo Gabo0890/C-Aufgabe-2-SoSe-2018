@@ -2,12 +2,12 @@
 #include <QTimer>
 #include <QGraphicsTextItem>
 #include <QFont>
-#include "enemies.h"
 #include "button.h"
-//#include "liveicon.h"
 #include <QBrush>
 #include <QGraphicsRectItem>
+#include "enemies.h"
 
+enemies *enemiess;
 
 game::game(QWidget *parent)
 {
@@ -61,14 +61,6 @@ game::game(QWidget *parent)
     health1->setPos(health1->x(),health1->y()+25);
     scene->addItem(health1);
 
-
-
-  /*  QTimer * timer = new QTimer();
-    QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn())); //spawn greift auf create enemy zu
-    timer->start(800);
-
-*/
-
 }
 
 
@@ -85,17 +77,32 @@ void game::prestart()
     scene->addItem(titleText);
 */
     //create play button
-    button* playButton = new button(QString("Play"));
-    int bxPos = 450;
+    startbutton = new button(QString("Play"));
+    int bxPos = 370;
     int byPos = 10;
-    playButton->setPos(bxPos,byPos);
-    connect(playButton,SIGNAL(clicked()),SLOT(start()));
-    scene->addItem(playButton);
+    startbutton->setPos(bxPos,byPos);
+    connect(startbutton,SIGNAL(clicked()),SLOT(start()));
+    scene->addItem(startbutton);
 
+    //create pause button
+    stopbutton = new button(QString("Pause"));
+    int pxPos = 450;
+    int pyPos = 10;
+    stopbutton->setPos(pxPos,pyPos);
+    connect(stopbutton,SIGNAL(clicked()),SLOT(stop()));
+    scene->addItem(stopbutton);
+
+    //create Continue button
+    resumebutton = new button(QString("Continue"));
+    int rxPos = 290;
+    int ryPos = 10;
+    resumebutton->setPos(rxPos,ryPos);
+    connect(resumebutton,SIGNAL(clicked()),SLOT(resume()));
+    scene->addItem(resumebutton);
 
     //create quit button
     button* quitButton = new button(QString("Quit"));
-    int qxPos = 530;
+    int qxPos = 690;
     int qyPos = 10;
     quitButton->setPos(qxPos,qyPos);
     connect(quitButton,SIGNAL(clicked()),this,SLOT(close()));
@@ -105,7 +112,7 @@ void game::prestart()
 
     //create load button
     button* loadButton = new button(QString("Load"));
-    int lxPos = 690;
+    int lxPos = 610;
     int lyPos = 10;
     loadButton->setPos(lxPos,lyPos);
     connect(loadButton,SIGNAL(clicked()),this,SLOT(close()));
@@ -113,7 +120,7 @@ void game::prestart()
 
     //create save button
     button* saveButton = new button(QString("Save"));
-    int sxPos = 610;
+    int sxPos = 530;
     int syPos = 10;
     saveButton->setPos(sxPos,syPos);
     connect(saveButton,SIGNAL(clicked()),this,SLOT(close()));
@@ -123,18 +130,19 @@ void game::prestart()
 
 void game::start()
 {
-    //Problem: spawnt jedes mal doppel so viele, wie vorher (iteration)
-    QTimer * timer = new QTimer();
+    timer = new QTimer();
       QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn())); //spawn greift auf create enemy zu
        timer->start(800);
-    //hier timer für den start implementieren (unabhängig von dem
-    //der den enemylaunch startet)!
-
-    //nicht notwendig
-    /*enemies * enemy1 = new enemies();
-    scene->addItem(enemy1);*/
-
-//startfunktion sollte lediglich timer haben und diesen aktivieren
-    // und restliche funktionen ausführen
-
 }
+
+void game::stop()
+{
+    //stop timer enemie"generator" aus start()
+    timer->stop();
+}
+
+void game::resume()
+{
+    timer->start();
+}
+

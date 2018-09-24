@@ -8,6 +8,8 @@
 #include <QFile>
 #include <QTimer>
 #include <QGraphicsRectItem>
+//#include "enemies.h"
+#include "button.h"
 
 
 
@@ -33,11 +35,19 @@ public:
     liveIcon * liveIcon1;
     liveIcon * liveIcon2;
     liveIcon * liveIcon3;
+    QTimer * timer;
+    button * startbutton;
+    button * stopbutton;
+    button *resumebutton;
+
+
 
 
 
 public slots:
      void start();
+     void stop();
+     void resume();
 
 
 };
