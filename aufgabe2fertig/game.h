@@ -5,11 +5,23 @@
 #include "score.h"
 #include "health.h"
 #include "liveicon.h"
+#include <QFile>
+#include <QTimer>
+#include <QGraphicsRectItem>
+
 
 class game : public QGraphicsView{
-public:
-    game(QWidget * parent=0);
+    Q_OBJECT
 
+public:
+   game(QWidget * parent=NULL);
+
+    //public methods
+
+        void prestart();
+
+
+//public attributs
     QGraphicsScene * scene;
     myPlayer * player;
     score * score1;
@@ -19,4 +31,9 @@ public:
     liveIcon * liveIcon3;
 
 
+
+public slots:
+     void start();
 };
+
+

@@ -3,16 +3,19 @@
 #include <QGraphicsTextItem>
 #include <QFont>
 #include "enemies.h"
+#include "button.h"
 //#include "liveicon.h"
+
 
 game::game(QWidget *parent)
 {
-    //create scene
+    //set up the scene
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,800,600);
-
-    //
+   // setPalette(QPalette(QColor(125,125,125)));
     setScene(scene);
+
+    //set up the screen
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(800,600);
@@ -58,15 +61,73 @@ game::game(QWidget *parent)
     scene->addItem(health1);
 
 
-
     //spawn enemies (zeitpunkt des timers(spanws)
-   QTimer * timer = new QTimer();
-   QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn())); //spawn greift auf create enemy zu
-   timer->start(800);
+    QTimer * timer = new QTimer();
+    QObject::connect(timer,SIGNAL(timeout()),SLOT(start())); //spawn greift auf create enemy zu
+    timer->start(2200);
 
-/*   //für zweiten gegner
-   QTimer * timer1 = new QTimer();
-   QObject::connect(timer1,SIGNAL(timeout()),player,SLOT(spawn1()));
-   timer1->start(5000);
-*/
 }
+
+
+
+void game::prestart()
+{
+   /* //create title text
+    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Roadtrip through Asteroids"));
+    QFont titleFont("comic sans",25);
+    titleText->setFont(titleFont);
+    int txPos = this->width()/2 - titleText->boundingRect().width()/2;
+    int tyPos = 150;
+    titleText->setPos(txPos,tyPos);
+    scene->addItem(titleText);
+*/
+    //create play button
+    button* playButton = new button(QString("Play"));
+    int bxPos = 450;
+    int byPos = 10;
+    playButton->setPos(bxPos,byPos);
+    connect(playButton,SIGNAL(clicked()),this,SLOT(start()));
+    scene->addItem(playButton);
+
+    //create quit button
+    button* quitButton = new button(QString("Quit"));
+    int qxPos = 530;
+    int qyPos = 10;
+    quitButton->setPos(qxPos,qyPos);
+    connect(quitButton,SIGNAL(clicked()),this,SLOT(close()));
+    scene->addItem(quitButton);
+
+    //funktionen noch definieren!!!
+
+    //create load button
+    button* loadButton = new button(QString("Load"));
+    int lxPos = 690;
+    int lyPos = 10;
+    loadButton->setPos(lxPos,lyPos);
+    connect(loadButton,SIGNAL(clicked()),this,SLOT(close()));
+    scene->addItem(loadButton);
+
+    //create save button
+    button* saveButton = new button(QString("Save"));
+    int sxPos = 610;
+    int syPos = 10;
+    saveButton->setPos(sxPos,syPos);
+    connect(saveButton,SIGNAL(clicked()),this,SLOT(close()));
+    scene->addItem(saveButton);
+
+}
+
+void game::start()
+{
+
+    enemies * enemy1 = new enemies();
+    scene->addItem(enemy1);
+
+
+}
+
+
+
+
+
+

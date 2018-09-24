@@ -29,7 +29,8 @@ SOURCES += main.cpp \
     game.cpp \
     score.cpp \
     health.cpp \
-    liveicon.cpp
+    liveicon.cpp \
+    button.cpp
 
 HEADERS  += \
     player.h \
@@ -37,4 +38,5 @@ HEADERS  += \
     game.h \
     score.h \
     health.h \
-    liveicon.h
+    liveicon.h \
+    button.h

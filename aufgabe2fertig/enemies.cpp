@@ -26,23 +26,10 @@ enemies::enemies():QObject(),QGraphicsRectItem(){
     QTimer * timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
     timer->start(50);
- /*   //für zweite klasse von gegner
-    QTimer * timer1 = new QTimer(this);
-    connect(timer1,SIGNAL(timeout()),this,SLOT(move()));
-    timer1->start(100);
-*/
+
 }
 
-/*enemies::enemies1():QObject(),QGraphicsEllipseItem()
-{
-    int random_number = rand() % 700;
-    setPos(random_number,0);
 
-    //draw first ellipse
-    setRect(0,0,20,20);
-
-
-}*/
 
 void enemies::move(){
 
