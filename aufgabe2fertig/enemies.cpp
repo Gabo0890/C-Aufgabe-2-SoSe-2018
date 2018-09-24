@@ -22,7 +22,6 @@ enemies::enemies():QObject(),QGraphicsRectItem(){
     setRect(0,0,35,35);
 
     //connect
-    //zu erster klasse von gegner
     QTimer * timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
     timer->start(50);

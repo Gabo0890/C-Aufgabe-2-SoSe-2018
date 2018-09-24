@@ -10,6 +10,7 @@
 #include <QGraphicsRectItem>
 
 
+
 class game : public QGraphicsView{
     Q_OBJECT
 
@@ -18,7 +19,10 @@ public:
 
     //public methods
 
+
         void prestart();
+
+
 
 
 //public attributs
@@ -34,6 +38,7 @@ public:
 
 public slots:
      void start();
-};
 
+
+};
 

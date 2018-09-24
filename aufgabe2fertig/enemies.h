@@ -1,11 +1,18 @@
 #include <QGraphicsRectItem>
 #include <QObject>
+#include <QTimer>
 
 
 class enemies: public QObject,public QGraphicsRectItem{
   Q_OBJECT
 public:
+
     enemies();
+
+
+    //
+
+
   //  enemies1();
   // enemies2();
 public slots:

@@ -2,6 +2,7 @@
 #include <QKeyEvent>
 #include "enemies.h"
 #include <QGraphicsScene>
+#include <Qtimer>
 
 void myPlayer::keyPressEvent(QKeyEvent *event)
 {
@@ -17,10 +18,12 @@ void myPlayer::keyPressEvent(QKeyEvent *event)
 
 void myPlayer::spawn()
 {
-  /*  //create enemy
+    //create enemy
     enemies * enemy = new enemies();
     scene()->addItem(enemy);
-*/
+
+
+
 }
 
 

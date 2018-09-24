@@ -5,6 +5,8 @@
 #include "enemies.h"
 #include "button.h"
 //#include "liveicon.h"
+#include <QBrush>
+#include <QGraphicsRectItem>
 
 
 game::game(QWidget *parent)
@@ -12,7 +14,6 @@ game::game(QWidget *parent)
     //set up the scene
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,800,600);
-   // setPalette(QPalette(QColor(125,125,125)));
     setScene(scene);
 
     //set up the screen
@@ -61,10 +62,12 @@ game::game(QWidget *parent)
     scene->addItem(health1);
 
 
-    //spawn enemies (zeitpunkt des timers(spanws)
-    QTimer * timer = new QTimer();
-    QObject::connect(timer,SIGNAL(timeout()),SLOT(start())); //spawn greift auf create enemy zu
-    timer->start(2200);
+
+  /*  QTimer * timer = new QTimer();
+    QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn())); //spawn greift auf create enemy zu
+    timer->start(800);
+
+*/
 
 }
 
@@ -86,8 +89,9 @@ void game::prestart()
     int bxPos = 450;
     int byPos = 10;
     playButton->setPos(bxPos,byPos);
-    connect(playButton,SIGNAL(clicked()),this,SLOT(start()));
+    connect(playButton,SIGNAL(clicked()),SLOT(start()));
     scene->addItem(playButton);
+
 
     //create quit button
     button* quitButton = new button(QString("Quit"));
@@ -119,15 +123,18 @@ void game::prestart()
 
 void game::start()
 {
+    //Problem: spawnt jedes mal doppel so viele, wie vorher (iteration)
+    QTimer * timer = new QTimer();
+      QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn())); //spawn greift auf create enemy zu
+       timer->start(800);
+    //hier timer für den start implementieren (unabhängig von dem
+    //der den enemylaunch startet)!
 
-    enemies * enemy1 = new enemies();
-    scene->addItem(enemy1);
+    //nicht notwendig
+    /*enemies * enemy1 = new enemies();
+    scene->addItem(enemy1);*/
 
+//startfunktion sollte lediglich timer haben und diesen aktivieren
+    // und restliche funktionen ausführen
 
 }
-
-
-
-
-
-
