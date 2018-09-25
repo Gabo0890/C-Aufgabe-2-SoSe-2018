@@ -2,6 +2,7 @@
 #include <QGraphicsRectItem>
 #include <QBrush>
 
+
 button::button(QString name, QGraphicsItem *parent) : QGraphicsRectItem(parent)
 {
     //draw rect

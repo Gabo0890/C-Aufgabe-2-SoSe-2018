@@ -13,5 +13,6 @@ public slots:
   //  void spawn2();
 
 
+
     //evtl noch spawn1(), spawn2() implementieren um einfacher enemies zu kategorisieren
 };

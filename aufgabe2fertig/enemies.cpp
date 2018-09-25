@@ -72,11 +72,13 @@ void enemies::move(){
 
 void enemies::stop()
 {
+    //stop den timer für enemy bewegung
     timer1->stop();
 }
 
 void enemies::resume()
 {
+    //startet timer wieder für enemy bewegung
     timer1->start();
 }
 

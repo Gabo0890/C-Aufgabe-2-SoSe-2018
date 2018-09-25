@@ -47,7 +47,7 @@ game::game(QWidget *parent)
     player->setFocus();
 
     //add player to scene
-    scene->addItem(player);
+    //scene->addItem(player);
 
     //add liveIcon to scene
     scene->addItem(liveIcon1);
@@ -78,7 +78,7 @@ void game::prestart()
 */
     //create play button
     startbutton = new button(QString("Play"));
-    int bxPos = 370;
+    int bxPos = 290;
     int byPos = 10;
     startbutton->setPos(bxPos,byPos);
     connect(startbutton,SIGNAL(clicked()),SLOT(start()));
@@ -94,7 +94,7 @@ void game::prestart()
 
     //create Continue button
     resumebutton = new button(QString("Continue"));
-    int rxPos = 290;
+    int rxPos = 370;
     int ryPos = 10;
     resumebutton->setPos(rxPos,ryPos);
     connect(resumebutton,SIGNAL(clicked()),SLOT(resume()));
@@ -133,16 +133,23 @@ void game::start()
     timer = new QTimer();
       QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn())); //spawn greift auf create enemy zu
        timer->start(800);
+       scene->addItem(player);
+       scene->removeItem(startbutton);
+
+
 }
 
 void game::stop()
 {
     //stop timer enemie"generator" aus start()
     timer->stop();
+
+
 }
 
 void game::resume()
 {
+    //startet timer enemie "generator" erneut
     timer->start();
 }
 

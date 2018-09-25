@@ -4,6 +4,7 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsSceneMouseEvent>
 
+
 class button :public QObject, public QGraphicsRectItem{
 
     Q_OBJECT
