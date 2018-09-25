@@ -10,6 +10,8 @@
 #include <QGraphicsRectItem>
 //#include "enemies.h"
 #include "button.h"
+#include <QGraphicsTextItem>
+
 
 
 
@@ -29,6 +31,7 @@ public:
 
 //public attributs
     QGraphicsScene * scene;
+    QGraphicsTextItem * title;
     myPlayer * player;
     score * score1;
     health * health1;
@@ -36,9 +39,16 @@ public:
     liveIcon * liveIcon2;
     liveIcon * liveIcon3;
     QTimer * timer;
+    QTimer *timer1;
     button * startbutton;
+    button1 * startbuttonmain;
+    button1 * quitbuttonmain;
+    button1 * loadmain;
     button * stopbutton;
     button *resumebutton;
+    button * loadbutton;
+    button * savebutton;
+    button * quit;
 
 
 
@@ -48,6 +58,8 @@ public slots:
      void start();
      void stop();
      void resume();
+     void load();
+     void save();
 
 
 };

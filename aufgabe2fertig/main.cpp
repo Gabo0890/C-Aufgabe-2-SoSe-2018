@@ -2,7 +2,9 @@
 #include "game.h"
 
 
+
 game * gamee;
+
 
 
 int main(int argc, char *argv[])

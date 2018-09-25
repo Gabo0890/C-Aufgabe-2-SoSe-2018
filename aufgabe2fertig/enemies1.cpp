@@ -11,8 +11,7 @@
 extern game * gamee;
 
 
-
-enemies::enemies():QObject(),QGraphicsRectItem(){
+enemies1::enemies1():QObject(),QGraphicsEllipseItem(){
 
 
 
@@ -23,8 +22,8 @@ enemies::enemies():QObject(),QGraphicsRectItem(){
 
 
     //draw the rect
-    setRect(0,30,15,15);
-    setBrush(Qt::darkBlue);
+    setRect(0,30,25,25);
+    setBrush(Qt::darkCyan);
 
     //connect
     timer1 = new QTimer(this);
@@ -44,31 +43,35 @@ connect(gamee->loadbutton,SIGNAL(clicked()),SLOT(save()));
 
 
 
-void enemies::move(){
+void enemies1::move(){
 
     //if enemie collides with player, destroy enemie
     QList<QGraphicsItem * > colliding_items = collidingItems();
 
     for(int i=0, n = colliding_items.size();i<n; i++){
         if(typeid(*(colliding_items[i])) ==  typeid(myPlayer)){
-
             //decreaselive the score
             gamee->score1->decreaseLive();
+
+            //löschen von liveicon
+            gamee->liveIcon1->deleteIcon();
 
             //remove enemie
             scene()->removeItem(this);
 
-
             //delete enemie
             delete this;
 
+            //sollte eigentlich die anwendung beenden, wenn der counter größer als 4ist
+            if( i>4){
+             QApplication::quit();
+            }
             return;
 
         }
     }
 
     //move enemies down
-    setRotation(y()+10);
     setPos(x(),y()+5);
         if (pos().y() > 600){
             //increase the score
@@ -80,13 +83,13 @@ void enemies::move(){
 
 }
 
-void enemies::stop()
+void enemies1::stop()
 {
     //stop den timer für enemy bewegung
     timer1->stop();
 }
 
-void enemies::resume()
+void enemies1::resume()
 {
     //startet timer wieder für enemy bewegung
     timer1->start();
@@ -97,14 +100,14 @@ void enemies::resume()
 //Positionen werden gespeichert
 //LastX und LastY werden für die Koordinaten gebraucht
 //für das Savegame in game.cpp
-void enemies::save(QFile &file)
+void enemies1::save(QFile &file)
 {
     QTextStream out(&file);
     out >> lastX >> endl;
     out >> lastY >> endl;
 }
 
-void enemies::load(QFile &file)
+void enemies1::load(QFile &file)
 {
     QTextStream in(&file);
         int x,y;

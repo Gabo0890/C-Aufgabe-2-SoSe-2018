@@ -30,7 +30,9 @@ SOURCES += main.cpp \
     score.cpp \
     health.cpp \
     liveicon.cpp \
-    button.cpp
+    button.cpp \
+    buttonmain.cpp \
+    enemies1.cpp
 
 HEADERS  += \
     player.h \

@@ -9,7 +9,7 @@ class myPlayer:public QObject, public QGraphicsRectItem {
 
 public slots:
     void spawn();
-    //void spawn1();
+    void spawn1();
   //  void spawn2();
 
 

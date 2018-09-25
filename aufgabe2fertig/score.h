@@ -1,15 +1,25 @@
 #include <QGraphicsTextItem>
 #include <QGraphicsRectItem>
 #include <QObject>
+#include <QTimer>
 
 
 class score : public QGraphicsTextItem{
+   // Q_OBJECT
 public:
     score(QGraphicsItem * parent=0);
-    void decreaseLive();
+
     int getScore();
-private:
+
+    //public aattributes
+    QTimer * timer2;
     int score1;
+
+public slots:
+    void stop();
+    void decreaseLive();
+signals:
+   // void anhalten();
 };
 
 

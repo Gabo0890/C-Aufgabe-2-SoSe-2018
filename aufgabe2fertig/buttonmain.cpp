@@ -3,10 +3,10 @@
 #include <QBrush>
 
 
-button::button(QString name, QGraphicsItem *parent) : QGraphicsRectItem(parent)
+button1::button1(QString name, QGraphicsItem *parent) : QGraphicsRectItem(parent)
 {
     //draw rect
-    setRect(0,0,80,18);
+    setRect(0,0,200,50);
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(Qt::darkRed);
@@ -22,12 +22,12 @@ button::button(QString name, QGraphicsItem *parent) : QGraphicsRectItem(parent)
     setAcceptHoverEvents(true);
 }
 
-void button::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void button1::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     emit clicked();
 }
 
-void button::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+void button1::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
     //change color
     QBrush brush;
@@ -36,7 +36,7 @@ void button::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
     setBrush(brush);
 }
 
-void button::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+void button1::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
     //change color
     QBrush brush;

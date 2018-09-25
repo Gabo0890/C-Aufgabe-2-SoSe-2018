@@ -10,8 +10,9 @@ health::health(QGraphicsItem *parent) : QGraphicsTextItem(parent)
 
     //text abbilden
     setPlainText(QString("score: ")+ QString::number(health1));
-    setDefaultTextColor(Qt::blue);
-    setFont(QFont("times",15));
+    setDefaultTextColor(Qt::darkRed);
+    setFont(QFont("times",20));
+
 }
 
 void health::increaseScore()

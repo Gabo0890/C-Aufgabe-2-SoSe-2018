@@ -6,5 +6,5 @@
 extern game * gamee;
 
 void liveIcon::deleteIcon(){
-        //hier funktion zum löschen der objekte
+
 }

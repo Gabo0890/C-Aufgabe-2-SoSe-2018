@@ -3,9 +3,14 @@
 #include <QGraphicsTextItem>
 #include <QFont>
 #include "button.h"
-#include <QBrush>
 #include <QGraphicsRectItem>
 #include "enemies.h"
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QPalette>
+#include <QBrush>
+
+
 
 enemies *enemiess;
 
@@ -14,6 +19,7 @@ game::game(QWidget *parent)
     //set up the scene
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,800,600);
+    scene->setBackgroundBrush(Qt::darkGray);
     setScene(scene);
 
     //set up the screen
@@ -25,64 +31,75 @@ game::game(QWidget *parent)
     player = new myPlayer();
     player->setRect(0,0,100,20);
     player->setPos(350,500);
+    player->setBrush(Qt::black);
 
     //create liveIcon1
     liveIcon1 = new liveIcon();
     liveIcon1->setRect(0,0,10,10);
     liveIcon1->setPos(45,6);
+    liveIcon1->setBrush(Qt::red);
 
     //create liveIcon2
     liveIcon2 = new liveIcon();
     liveIcon2->setRect(0,0,10,10);
     liveIcon2->setPos(60,6);
+    liveIcon2->setBrush(Qt::red);
 
     //create liveIcon3
     liveIcon3 = new liveIcon();
     liveIcon3->setRect(0,0,10,10);
     liveIcon3->setPos(75,6);
-
+    liveIcon3->setBrush(Qt::red);
 
     //make it focusable
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
 
-    //add player to scene
-    //scene->addItem(player);
-
-    //add liveIcon to scene
-    scene->addItem(liveIcon1);
-    scene->addItem(liveIcon2);
-    scene->addItem(liveIcon3);
 
     //create score/health
     score1 = new score();
-    scene->addItem(score1);
     health1 = new health();
-    health1->setPos(health1->x(),health1->y()+25);
-    scene->addItem(health1);
+  //  health1->setPos(health1->x(),health1->y()+25);
+    health1->setPos(670,570);
 
 }
 
 
-
 void game::prestart()
 {
-   /* //create title text
-    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Roadtrip through Asteroids"));
-    QFont titleFont("comic sans",25);
-    titleText->setFont(titleFont);
-    int txPos = this->width()/2 - titleText->boundingRect().width()/2;
-    int tyPos = 150;
-    titleText->setPos(txPos,tyPos);
-    scene->addItem(titleText);
-*/
-    //create play button
-    startbutton = new button(QString("Play"));
-    int bxPos = 290;
-    int byPos = 10;
-    startbutton->setPos(bxPos,byPos);
-    connect(startbutton,SIGNAL(clicked()),SLOT(start()));
-    scene->addItem(startbutton);
+    //create title text
+    title = new QGraphicsTextItem(QString("C++ Aufgabe 2: SoSe 2017"));
+    QFont titleFont("comic sans",50);
+    title->setFont(titleFont);
+    int txPos = this->width()/2 - title->boundingRect().width()/2;
+    int tyPos = 100;
+    title->setPos(txPos,tyPos);
+    scene->addItem(title);
+
+
+    //create play button for main menu
+    startbuttonmain = new button1(QString("Play"));
+    int bx1Pos = this->width()/2 - startbuttonmain->boundingRect().width()/2;
+    int by1Pos = 200;
+    startbuttonmain->setPos(bx1Pos,by1Pos);
+    connect(startbuttonmain,SIGNAL(clicked()),SLOT(start()));
+    scene->addItem(startbuttonmain);
+
+    //create main menu quit button
+    quitbuttonmain = new button1(QString("Quit"));
+    int q1xPos = this->width()/2 - quitbuttonmain->boundingRect().width()/2;
+    int q1yPos = 350;
+    quitbuttonmain->setPos(q1xPos,q1yPos);
+    connect(quitbuttonmain,SIGNAL(clicked()),this,SLOT(close()));
+    scene->addItem(quitbuttonmain);
+
+    //create load button for main menu
+    loadmain = new button1(QString("Load"));
+    int lx1Pos = this->width()/2 - loadmain->boundingRect().width()/2;;
+    int ly1Pos = 275;
+    loadmain->setPos(lx1Pos,ly1Pos);
+    connect(loadmain,SIGNAL(clicked()),this,SLOT(load()));
+    scene->addItem(loadmain);
 
     //create pause button
     stopbutton = new button(QString("Pause"));
@@ -90,7 +107,6 @@ void game::prestart()
     int pyPos = 10;
     stopbutton->setPos(pxPos,pyPos);
     connect(stopbutton,SIGNAL(clicked()),SLOT(stop()));
-    scene->addItem(stopbutton);
 
     //create Continue button
     resumebutton = new button(QString("Continue"));
@@ -98,58 +114,125 @@ void game::prestart()
     int ryPos = 10;
     resumebutton->setPos(rxPos,ryPos);
     connect(resumebutton,SIGNAL(clicked()),SLOT(resume()));
-    scene->addItem(resumebutton);
 
     //create quit button
-    button* quitButton = new button(QString("Quit"));
+    quit= new button(QString("Quit"));
     int qxPos = 690;
     int qyPos = 10;
-    quitButton->setPos(qxPos,qyPos);
-    connect(quitButton,SIGNAL(clicked()),this,SLOT(close()));
-    scene->addItem(quitButton);
-
-    //funktionen noch definieren!!!
+    quit->setPos(qxPos,qyPos);
+    connect(quit,SIGNAL(clicked()),this,SLOT(close()));
 
     //create load button
-    button* loadButton = new button(QString("Load"));
+    loadbutton = new button(QString("Load"));
     int lxPos = 610;
     int lyPos = 10;
-    loadButton->setPos(lxPos,lyPos);
-    connect(loadButton,SIGNAL(clicked()),this,SLOT(close()));
-    scene->addItem(loadButton);
+    loadbutton->setPos(lxPos,lyPos);
+    connect(loadbutton,SIGNAL(clicked()),this,SLOT(load()));
 
     //create save button
-    button* saveButton = new button(QString("Save"));
+    savebutton = new button(QString("Save"));
     int sxPos = 530;
     int syPos = 10;
-    saveButton->setPos(sxPos,syPos);
-    connect(saveButton,SIGNAL(clicked()),this,SLOT(close()));
-    scene->addItem(saveButton);
+    savebutton->setPos(sxPos,syPos);
+    connect(savebutton,SIGNAL(clicked()),this,SLOT(save()));
 
 }
 
 void game::start()
 {
+    //timer für spawn()
     timer = new QTimer();
       QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn())); //spawn greift auf create enemy zu
-       timer->start(800);
+       timer->start(750);
+
+    timer1 = new QTimer();
+      QObject::connect(timer1,SIGNAL(timeout()),player,SLOT(spawn1())); //spawn greift auf create enemy zu
+       timer1->start(1200);
+
+//add resume button
+              scene->addItem(resumebutton);
+//add player to scene
        scene->addItem(player);
-       scene->removeItem(startbutton);
-
-
+//add score to scene
+       scene->addItem(health1);
+//add liveIcon to scene
+       scene->addItem(liveIcon1);
+       scene->addItem(liveIcon2);
+       scene->addItem(liveIcon3);
+//Add live to Scene:
+       scene->addItem(score1);
+       scene->addItem(quit);
+       scene->addItem(loadbutton);
+       scene->addItem(savebutton);
+       scene->addItem(stopbutton);
+//Remove Main button buttons
+       scene->removeItem(startbuttonmain);
+       scene->removeItem(quitbuttonmain);
+       scene->removeItem(loadmain);
+//Remove title
+       scene->removeItem(title);
 }
 
 void game::stop()
 {
     //stop timer enemie"generator" aus start()
     timer->stop();
-
-
+    timer1->stop();
 }
 
 void game::resume()
 {
     //startet timer enemie "generator" erneut
     timer->start();
+    timer1->start();
 }
+//diese funktionen sind wahrscheinlich überflüssig, da die notwendigen
+//daten aus enemies.cpp bezogen werden!!!
+void game::save()
+{
+    QFileDialog dialog(this);
+    QString fileName;
+    QFile file;
+
+    dialog.setFileMode(QFileDialog::AnyFile);
+    fileName = dialog.getSaveFileName(this,tr("Speichern als"),".",tr("Zeichnungen(*.myz)"));
+
+    if(fileName.isNull()==false)
+    {
+        file.setFileName(fileName);
+        if(!file.open(QIODevice::WriteOnly | QIODevice::Text ))
+        {
+            QMessageBox::warning(this,tr("Dateifehler"),tr("Folgende Datei kann nicht verwendet werdden: ") + fileName,QMessageBox::Ok);
+        }
+
+
+        file.close();
+        return;
+    }
+}
+
+void game::load()
+{
+    QFileDialog dialog(this);
+    QString fileName;
+    QFile file;
+
+    dialog.setFileMode(QFileDialog::AnyFile);
+    fileName = dialog.getOpenFileName(this, tr("Öffnen"),".",tr("Zeichnungen(*.myz)"));
+
+    //if data can't get loaded
+    if(fileName.isNull()==false)
+    {
+        file.setFileName(fileName);
+        if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            QMessageBox::warning(this,tr("Dateifehler"),tr("Folgende Datei kann nicht geladen werden: ")+ fileName,QMessageBox::Ok);
+        }
+
+        file.close();
+        return;
+    }
+}
+
+
 

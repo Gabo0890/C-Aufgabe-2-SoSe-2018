@@ -24,6 +24,13 @@ void myPlayer::spawn()
 
 
 
+
+}
+
+void myPlayer::spawn1()
+{
+    enemies1 * enemy1 = new enemies1();
+    scene()->addItem(enemy1);
 }
 
 
