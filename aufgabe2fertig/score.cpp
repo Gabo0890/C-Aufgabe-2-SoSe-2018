@@ -45,14 +45,29 @@ void score::decreaseLive()
         gamee->player->hide();
 
         //connect(enemiess->timer1,SIGNAL(timeout()),SLOT(stop()));
-       // gamee->timer->stop();
-       // gamee->timer1->stop();
+        gamee->timer->stop();
+        gamee->timer1->stop();
+        gamee->timer2->stop();
         //  enemiess->timer1->stop();
 
 
     }
   //  setPlainText(QString("Lives: ")+ QString::number(score1)); //hinter score objekte laden, die die number ersetzen
 
+
+}
+
+void score::increaselive()
+{
+    score1++;
+       if(score1==3){
+           gamee->liveIcon3->setBrush(Qt::red);
+           gamee->player->setOpacity(1);
+       }
+       if(score1==2){
+           gamee->liveIcon2->setBrush(Qt::red);
+           gamee->player->setOpacity(0.6);
+       }
 
 }
 

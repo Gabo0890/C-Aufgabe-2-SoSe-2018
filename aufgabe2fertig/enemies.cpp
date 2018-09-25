@@ -55,6 +55,9 @@ void enemies::move(){
             //decreaselive the score
             gamee->score1->decreaseLive();
 
+            //TODO: stops enemie timer(beide)
+
+
             //remove enemie
             scene()->removeItem(this);
 
@@ -68,6 +71,7 @@ void enemies::move(){
     }
 
     //move enemies down
+    //TODO:Speichern von Positionen-->Switch case mit positionen
     setRotation(y()+10);
     setPos(x(),y()+5);
         if (pos().y() > 600){

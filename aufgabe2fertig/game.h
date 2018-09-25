@@ -40,6 +40,7 @@ public:
     liveIcon * liveIcon3;
     QTimer * timer;
     QTimer *timer1;
+    QTimer *timer2;
     button * startbutton;
     button1 * startbuttonmain;
     button1 * quitbuttonmain;

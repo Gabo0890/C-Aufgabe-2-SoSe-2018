@@ -11,7 +11,7 @@
 extern game * gamee;
 
 
-enemies1::enemies1():QObject(),QGraphicsEllipseItem(){
+enemies2::enemies2():QObject(),QGraphicsRectItem(){
 
 
 
@@ -22,8 +22,8 @@ enemies1::enemies1():QObject(),QGraphicsEllipseItem(){
 
 
     //draw the rect
-    setRect(0,30,25,25);
-    setBrush(Qt::white);
+    setRect(0,30,40,40);
+    setBrush(Qt::darkGreen);
 
     //connect
     timer1 = new QTimer(this);
@@ -43,7 +43,7 @@ connect(gamee->loadbutton,SIGNAL(clicked()),SLOT(save()));
 
 
 
-void enemies1::move(){
+void enemies2::move(){
 
     //if enemie collides with player, destroy enemie
     QList<QGraphicsItem * > colliding_items = collidingItems();
@@ -51,7 +51,7 @@ void enemies1::move(){
     for(int i=0, n = colliding_items.size();i<n; i++){
         if(typeid(*(colliding_items[i])) ==  typeid(myPlayer)){
             //decreaselive the score
-            gamee->score1->decreaseLive();
+            gamee->score1->increaselive();
 
             //löschen von liveicon
             gamee->liveIcon1->deleteIcon();
@@ -91,13 +91,13 @@ void enemies1::move(){
 */
 }
 
-void enemies1::stop()
+void enemies2::stop()
 {
     //stop den timer für enemy bewegung
     timer1->stop();
 }
 
-void enemies1::resume()
+void enemies2::resume()
 {
     //startet timer wieder für enemy bewegung
     timer1->start();
@@ -108,14 +108,14 @@ void enemies1::resume()
 //Positionen werden gespeichert
 //LastX und LastY werden für die Koordinaten gebraucht
 //für das Savegame in game.cpp
-void enemies1::save(QFile &file)
+void enemies2::save(QFile &file)
 {
     QTextStream out(&file);
     out >> lastX >> endl;
     out >> lastY >> endl;
 }
 
-void enemies1::load(QFile &file)
+void enemies2::load(QFile &file)
 {
     QTextStream in(&file);
         int x,y;

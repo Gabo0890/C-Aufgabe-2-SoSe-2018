@@ -147,7 +147,11 @@ void game::start()
 
     timer1 = new QTimer();
       QObject::connect(timer1,SIGNAL(timeout()),player,SLOT(spawn1())); //spawn greift auf create enemy zu
-       timer1->start(1200);
+       timer1->start(1000);
+
+    timer2 = new QTimer();
+         QObject::connect(timer2,SIGNAL(timeout()),player,SLOT(spawn2())); //spawn greift auf create enemy zu
+          timer2->start(20000);
 
 //add resume button
               scene->addItem(resumebutton);
@@ -178,6 +182,8 @@ void game::stop()
     //stop timer enemie"generator" aus start()
     timer->stop();
     timer1->stop();
+    timer2->stop();
+    player->hide();
 }
 
 void game::resume()
@@ -185,6 +191,8 @@ void game::resume()
     //startet timer enemie "generator" erneut
     timer->start();
     timer1->start();
+    timer2->start();
+    player->show();
 }
 //diese funktionen sind wahrscheinlich überflüssig, da die notwendigen
 //daten aus enemies.cpp bezogen werden!!!

@@ -18,6 +18,7 @@ public:
 public slots:
     void stop();
     void decreaseLive();
+    void increaselive();
 signals:
    // void anhalten();
 };
