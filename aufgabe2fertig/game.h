@@ -32,6 +32,7 @@ public:
 //public attributs
     QGraphicsScene * scene;
     QGraphicsTextItem * title;
+    QGraphicsTextItem * gameover;
     myPlayer * player;
     score * score1;
     health * health1;
@@ -41,6 +42,7 @@ public:
     QTimer * timer;
     QTimer *timer1;
     QTimer *timer2;
+    QTimer *timer3;
     button * startbutton;
     button1 * startbuttonmain;
     button1 * quitbuttonmain;

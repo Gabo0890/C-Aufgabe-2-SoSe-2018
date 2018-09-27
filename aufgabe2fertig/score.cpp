@@ -54,6 +54,7 @@ void score::decreaseLive()
         gamee->timer->stop();
         gamee->timer1->stop();
         gamee->timer2->stop();
+        gamee->timer3->stop();
 //enemiess->timer1->stop();
 
         //load game menu after death
@@ -61,6 +62,21 @@ void score::decreaseLive()
         gamee->scene->addItem(gamee->startbuttonmain);
         gamee->scene->addItem(gamee->quitbuttonmain);
         gamee->scene->addItem(gamee->loadmain);
+        //Remove Gamebuttons
+        gamee->scene->removeItem(gamee->resumebutton);
+        gamee->scene->removeItem(gamee->loadbutton);
+        gamee->scene->removeItem(gamee->savebutton);
+        gamee->scene->removeItem(gamee->stopbutton);
+        gamee->scene->removeItem(gamee->quit);
+        gamee->scene->removeItem(gamee->liveIcon1);
+        gamee->scene->removeItem(gamee->liveIcon2);
+        gamee->scene->removeItem(gamee->liveIcon3);
+        gamee->scene->removeItem(gamee->score1);
+        //set Score and Game over text
+        gamee->health1->setPos(275,100);
+        gamee->health1->setScale(3);
+        gamee->scene->addItem(gamee->gameover);
+
 
 
 

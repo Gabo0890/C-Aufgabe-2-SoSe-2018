@@ -71,4 +71,25 @@ public slots:
     void load(QFile &file);
 };
 
-//idee: weitere klassen für andere gegner kategorien implementieren
+class enemies3: public QObject,public QGraphicsRectItem{
+  Q_OBJECT
+public:
+
+    enemies3();
+
+
+    //public attributes
+    QTimer * timer1;
+    int lastX;
+    int lastY;
+
+
+public slots:
+    void move();
+    void stop();
+    void resume();
+    void save(QFile &file);
+    void load(QFile &file);
+};
+
+

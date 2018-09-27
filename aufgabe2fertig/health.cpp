@@ -9,7 +9,7 @@ health::health(QGraphicsItem *parent) : QGraphicsTextItem(parent)
 
 
     //text abbilden
-    setPlainText(QString("score: ")+ QString::number(health1));
+    setPlainText(QString("Score: ")+ QString::number(health1));
     setDefaultTextColor(Qt::darkRed);
     setFont(QFont("times",20));
 
@@ -22,7 +22,7 @@ void health::increaseScore()
   //  for(health1 = 0; health1>=0; health1+=5){
     //for schleife für verschiedene scores (muss noch erweitert werden)
 
-    setPlainText(QString("score: ")+ QString::number(health1)); //hinter score objekte laden, die die number ersetzen
+    setPlainText(QString("Score: ")+ QString::number(health1)); //hinter score objekte laden, die die number ersetzen
 }
 
 

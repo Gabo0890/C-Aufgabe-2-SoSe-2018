@@ -33,7 +33,8 @@ SOURCES += main.cpp \
     button.cpp \
     buttonmain.cpp \
     enemies1.cpp \
-    enemies2.cpp
+    enemies2.cpp \
+    enemies3.cpp
 
 HEADERS  += \
     player.h \

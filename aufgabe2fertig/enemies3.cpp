@@ -11,7 +11,7 @@
 extern game * gamee;
 
 
-enemies1::enemies1():QObject(),QGraphicsEllipseItem(){
+enemies3::enemies3():QObject(),QGraphicsRectItem(){
 
 
 
@@ -22,8 +22,8 @@ enemies1::enemies1():QObject(),QGraphicsEllipseItem(){
 
 
     //draw the rect
-    setRect(0,30,25,25);
-    setBrush(Qt::white);
+    setRect(0,30,10,30);
+    setBrush(Qt::blue);
 
     //connect
     timer1 = new QTimer(this);
@@ -43,7 +43,7 @@ connect(gamee->loadbutton,SIGNAL(clicked()),SLOT(save()));
 
 
 
-void enemies1::move(){
+void enemies3::move(){
 
     //if enemie collides with player, destroy enemie
     QList<QGraphicsItem * > colliding_items = collidingItems();
@@ -78,7 +78,7 @@ void enemies1::move(){
     //move enemies down
     //TODO:zickzack bewegung
     //TODO: speichern von positionen-->switch case für positionen
-    setPos(x(),y()+3);
+    setPos(x(),y()+5);
         if (pos().y() > 600){
             //increase the score
             gamee->health1->increaseScore();
@@ -91,13 +91,13 @@ void enemies1::move(){
 */
 }
 
-void enemies1::stop()
+void enemies3::stop()
 {
     //stop den timer für enemy bewegung
     timer1->stop();
 }
 
-void enemies1::resume()
+void enemies3::resume()
 {
     //startet timer wieder für enemy bewegung
     timer1->start();
@@ -108,14 +108,14 @@ void enemies1::resume()
 //Positionen werden gespeichert
 //LastX und LastY werden für die Koordinaten gebraucht
 //für das Savegame in game.cpp
-void enemies1::save(QFile &file)
+void enemies3::save(QFile &file)
 {
     QTextStream out(&file);
     out >> lastX >> endl;
     out >> lastY >> endl;
 }
 
-void enemies1::load(QFile &file)
+void enemies3::load(QFile &file)
 {
     QTextStream in(&file);
         int x,y;

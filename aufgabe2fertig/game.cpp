@@ -31,7 +31,7 @@ game::game(QWidget *parent)
     player = new myPlayer();
     player->setRect(0,0,100,20);
     player->setPos(350,500);
-    player->setBrush(Qt::red);
+    player->setBrush(Qt::black);
 
    //stufe 1 schraffiert --> da aber player an opacity verliert
     //ergibt eine solid farbe eher sinn
@@ -73,12 +73,21 @@ void game::prestart()
 {
     //create title text
     title = new QGraphicsTextItem(QString("C++ Aufgabe 2: SoSe 2017"));
-    QFont titleFont("comic sans",50);
+    QFont titleFont("times",50);
     title->setFont(titleFont);
     int txPos = this->width()/2 - title->boundingRect().width()/2;
     int tyPos = 100;
     title->setPos(txPos,tyPos);
     scene->addItem(title);
+
+    //create game over text
+    gameover = new QGraphicsTextItem(QString("Game Over"));
+    QFont titleFont1("times",70);
+    gameover->setFont(titleFont1);
+    int t1xPos = this->width()/2 - gameover->boundingRect().width()/2;
+    int t1yPos = 40;
+    gameover->setPos(t1xPos,t1yPos);
+
 
 
     //create play button for main menu
@@ -156,6 +165,10 @@ void game::start()
     timer2 = new QTimer();
          QObject::connect(timer2,SIGNAL(timeout()),player,SLOT(spawn2())); //spawn greift auf create enemy zu
           timer2->start(20000);
+
+    timer3 = new QTimer();
+          QObject::connect(timer3,SIGNAL(timeout()),player,SLOT(spawn3())); //spawn greift auf create enemy zu
+           timer3->start(2000);
 
 //add resume button
        scene->addItem(resumebutton);
