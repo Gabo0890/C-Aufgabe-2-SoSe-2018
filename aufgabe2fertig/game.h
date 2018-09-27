@@ -8,7 +8,7 @@
 #include <QFile>
 #include <QTimer>
 #include <QGraphicsRectItem>
-//#include "enemies.h"
+#include "enemies.h"
 #include "button.h"
 #include <QGraphicsTextItem>
 
@@ -53,7 +53,8 @@ public:
     button * savebutton;
     button * quit;
 
-
+private:
+        enemies3 *meingegner;
 
 
 

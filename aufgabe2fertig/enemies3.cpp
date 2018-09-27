@@ -5,7 +5,6 @@
 #include <QDebug>
 #include <QApplication>
 #include "game.h"
-#include "enemies.h"
 #include "button.h"
 
 extern game * gamee;
@@ -16,19 +15,27 @@ enemies3::enemies3():QObject(),QGraphicsRectItem(){
 
 
     //set random position
+    //random_numter ist x position
     int random_number = rand() % 900;
-    setPos(random_number,0);
+    int y=0;
+    setPos(random_number,y);
 
 
+//lastX=x;
+//lastY=y;
+//x=lastX;
+//y=lastY;
 
     //draw the rect
-    setRect(0,30,10,30);
+    setRect(0,0,10,30);
     setBrush(Qt::blue);
 
-    //connect
+    //connect timer bewegung
     timer1 = new QTimer(this);
     connect(timer1,SIGNAL(timeout()),this,SLOT(move()));
     timer1->start(50);
+
+
 
 //SLOT stop() mit Stopbutton verbunden (in game.cpp)
 connect(gamee->stopbutton,SIGNAL(clicked()),SLOT(stop()));
@@ -74,33 +81,46 @@ void enemies3::move(){
     }
 
 
-
-    //move enemies down
-    //TODO:zickzack bewegung
-    //TODO: speichern von positionen-->switch case für positionen
-    setPos(x(),y()+5);
+    setPos(x(),y()+3);
         if (pos().y() > 600){
             //increase the score
             gamee->health1->increaseScore();
             scene()->removeItem(this);
             delete this;
         }
-         /*if(pos().y()<200){
-            setPos(x()+3,y()+5);
-     }
-*/
+        //haken bewegung
+         if(pos().y() >100){
+            setPos(x()+7,y()+3);
+        }
+         if(pos().y() >200){
+            setPos(x()-6,y()+3);
+        }
+         if(pos().y() >300){
+            setPos(x()+6,y()+3);
+        }
+         if(pos().y() >400){
+            setPos(x()-9,y()+3);
+        }
+         if(pos().y() >500){
+            setPos(x()+3,y()+3);
+        }
+
+
+
 }
 
 void enemies3::stop()
 {
     //stop den timer für enemy bewegung
     timer1->stop();
+
 }
 
 void enemies3::resume()
 {
     //startet timer wieder für enemy bewegung
     timer1->start();
+
 }
 
 
@@ -108,11 +128,16 @@ void enemies3::resume()
 //Positionen werden gespeichert
 //LastX und LastY werden für die Koordinaten gebraucht
 //für das Savegame in game.cpp
+
+//Problem: pos().x() kann nicht an lastX,lastY übergeben werden
+
 void enemies3::save(QFile &file)
 {
     QTextStream out(&file);
-    out >> lastX >> endl;
-    out >> lastY >> endl;
+    out << lastX << endl;
+    out << lastY << endl;
+
+
 }
 
 void enemies3::load(QFile &file)

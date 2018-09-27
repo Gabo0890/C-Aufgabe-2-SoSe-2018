@@ -5,8 +5,8 @@
 #include <QDebug>
 #include <QApplication>
 #include "game.h"
-#include "enemies.h"
 #include "button.h"
+
 
 extern game * gamee;
 
@@ -35,11 +35,6 @@ enemies::enemies():QObject(),QGraphicsRectItem(){
 connect(gamee->stopbutton,SIGNAL(clicked()),SLOT(stop()));
 //SLOT stop() mit Resumebutton verbunden (in game.cpp)
 connect(gamee->resumebutton,SIGNAL(clicked()),SLOT(resume()));
-/*//SLOT save() mit Savebutton verbunden (in game.cpp)
-connect(gamee->savebutton,SIGNAL(clicked()),SLOT(save()));
-//SLOT load() mit Loadbutton verbunden (in game.cpp)
-connect(gamee->loadbutton,SIGNAL(clicked()),SLOT(save()));
-*/
 }
 
 

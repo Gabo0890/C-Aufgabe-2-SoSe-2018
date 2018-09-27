@@ -1,4 +1,3 @@
-//#include "score.h"
 #include <QFont>
 #include "game.h"
 #include <QTime>
@@ -22,10 +21,6 @@ score::score(QGraphicsItem *parent) : QGraphicsTextItem(parent)
     setDefaultTextColor(Qt::darkRed);                                // nicht notwendig, da objekte gesetzt werdden
     setFont(QFont("times",15));
 
-   /* //connect
-    timer2 = new QTimer(this);
-    connect(timer2,SIGNAL(timeout()),this,SLOT(decreaseLive()));
-    timer2->start(); */
 }
 
 void score::decreaseLive()
@@ -55,7 +50,6 @@ void score::decreaseLive()
         gamee->timer1->stop();
         gamee->timer2->stop();
         gamee->timer3->stop();
-//enemiess->timer1->stop();
 
         //load game menu after death
         //Problem: soll werte von live und score resetten
@@ -77,16 +71,7 @@ void score::decreaseLive()
         gamee->health1->setScale(3);
         gamee->scene->addItem(gamee->gameover);
 
-
-
-
-        //game over und score einblenden nach letztem leben
-        //gamee->scene->addItem(gamee->score);
-        //gamee->scene->addItem(gamee->gameover);
-
-
     }
-  //  setPlainText(QString("Lives: ")+ QString::number(score1)); //hinter score objekte laden, die die number ersetzen
 
 
 }
@@ -113,7 +98,5 @@ int score::getScore()
 void score::stop()
 {
 
-    //Timer wird gestoppt
-   // timer2->stop();
-  //  enemiess->timer1->stop();
+
 }

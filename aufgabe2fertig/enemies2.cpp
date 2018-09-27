@@ -5,7 +5,6 @@
 #include <QDebug>
 #include <QApplication>
 #include "game.h"
-#include "enemies.h"
 #include "button.h"
 
 extern game * gamee;
@@ -23,7 +22,7 @@ enemies2::enemies2():QObject(),QGraphicsRectItem(){
 
     //draw the rect
     setRect(0,30,40,40);
-    setBrush(Qt::darkGreen);
+    setBrush(Qt::magenta);
 
     //connect
     timer1 = new QTimer(this);
@@ -85,16 +84,14 @@ void enemies2::move(){
             scene()->removeItem(this);
             delete this;
         }
-         /*if(pos().y()<200){
-            setPos(x()+3,y()+5);
-     }
-*/
+
 }
 
 void enemies2::stop()
 {
     //stop den timer für enemy bewegung
     timer1->stop();
+
 }
 
 void enemies2::resume()

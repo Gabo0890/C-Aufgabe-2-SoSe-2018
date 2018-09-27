@@ -4,7 +4,6 @@
 #include <QFont>
 #include "button.h"
 #include <QGraphicsRectItem>
-#include "enemies.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QPalette>
@@ -156,19 +155,19 @@ void game::start()
     //timer für spawn()
     timer = new QTimer();
       QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn())); //spawn greift auf create enemy zu
-       timer->start(750);
+       timer->start(1000);
 
     timer1 = new QTimer();
       QObject::connect(timer1,SIGNAL(timeout()),player,SLOT(spawn1())); //spawn greift auf create enemy zu
-       timer1->start(1000);
+       timer1->start(1150);
 
     timer2 = new QTimer();
          QObject::connect(timer2,SIGNAL(timeout()),player,SLOT(spawn2())); //spawn greift auf create enemy zu
-          timer2->start(20000);
+          timer2->start(10000);
 
     timer3 = new QTimer();
           QObject::connect(timer3,SIGNAL(timeout()),player,SLOT(spawn3())); //spawn greift auf create enemy zu
-           timer3->start(2000);
+           timer3->start(6000);
 
 //add resume button
        scene->addItem(resumebutton);
@@ -202,6 +201,7 @@ void game::stop()
     timer->stop();
     timer1->stop();
     timer2->stop();
+    timer3->stop();
     player->hide();
 }
 
@@ -211,6 +211,7 @@ void game::resume()
     timer->start();
     timer1->start();
     timer2->start();
+    timer3->start();
     player->show();
 }
 //diese funktionen sind wahrscheinlich überflüssig, da die notwendigen
@@ -231,6 +232,12 @@ void game::save()
         {
             QMessageBox::warning(this,tr("Dateifehler"),tr("Folgende Datei kann nicht verwendet werdden: ") + fileName,QMessageBox::Ok);
         }
+        //laden der positionen in datei
+
+       // meingegner->save(file);
+
+
+
 
 
         file.close();

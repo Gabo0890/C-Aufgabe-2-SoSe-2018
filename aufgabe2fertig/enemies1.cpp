@@ -5,7 +5,6 @@
 #include <QDebug>
 #include <QApplication>
 #include "game.h"
-#include "enemies.h"
 #include "button.h"
 
 extern game * gamee;

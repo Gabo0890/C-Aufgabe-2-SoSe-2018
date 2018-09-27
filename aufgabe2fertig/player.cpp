@@ -2,7 +2,7 @@
 #include <QKeyEvent>
 #include "enemies.h"
 #include <QGraphicsScene>
-//#include <Qtimer>
+#include <QString>
 
 void myPlayer::keyPressEvent(QKeyEvent *event)
 {

@@ -2,6 +2,8 @@
 #include <QObject>
 #include <QTimer>
 #include <QFile>
+#include <QWidget>
+#include <vector>
 
 
 
@@ -19,6 +21,7 @@ public:
 
     int lastX;
     int lastY;
+
 
 
 public slots:
@@ -59,8 +62,11 @@ public:
 
     //public attributes
     QTimer * timer1;
+
     int lastX;
     int lastY;
+
+
 
 
 public slots:
@@ -69,6 +75,8 @@ public slots:
     void resume();
     void save(QFile &file);
     void load(QFile &file);
+
+
 };
 
 class enemies3: public QObject,public QGraphicsRectItem{
@@ -77,11 +85,13 @@ public:
 
     enemies3();
 
-
     //public attributes
     QTimer * timer1;
     int lastX;
     int lastY;
+    int increment;
+    int phase;
+    int phase1;
 
 
 public slots:
