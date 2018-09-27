@@ -52,11 +52,17 @@ void enemies::move(){
     for(int i=0, n = colliding_items.size();i<n; i++){
         if(typeid(*(colliding_items[i])) ==  typeid(myPlayer)){
 
+
+            /*    //stoppt momentan nur das gameobjekt, mit welchem kollidiert wurde
+            QTime timer2 = QTime::currentTime().addSecs(1);
+            while(QTime::currentTime()<timer2)
+                QCoreApplication::processEvents(QEventLoop::AllEvents, 100);*/
+
+
             //decreaselive the score
             gamee->score1->decreaseLive();
 
             //TODO: stops enemie timer(beide)
-
 
             //remove enemie
             scene()->removeItem(this);

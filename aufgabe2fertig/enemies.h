@@ -6,6 +6,7 @@
 
 
 
+
 class enemies: public QObject,public QGraphicsRectItem{
   Q_OBJECT
 public:
@@ -15,6 +16,7 @@ public:
 
     //public attributes
     QTimer * timer1;
+
     int lastX;
     int lastY;
 

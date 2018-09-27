@@ -31,7 +31,11 @@ game::game(QWidget *parent)
     player = new myPlayer();
     player->setRect(0,0,100,20);
     player->setPos(350,500);
-    player->setBrush(Qt::black);
+    player->setBrush(Qt::red);
+
+   //stufe 1 schraffiert --> da aber player an opacity verliert
+    //ergibt eine solid farbe eher sinn
+   // player->setBrush(Qt::BDiagPattern);
 
     //create liveIcon1
     liveIcon1 = new liveIcon();
@@ -154,7 +158,7 @@ void game::start()
           timer2->start(20000);
 
 //add resume button
-              scene->addItem(resumebutton);
+       scene->addItem(resumebutton);
 //add player to scene
        scene->addItem(player);
 //add score to scene
@@ -175,6 +179,8 @@ void game::start()
        scene->removeItem(loadmain);
 //Remove title
        scene->removeItem(title);
+
+       player->show();
 }
 
 void game::stop()

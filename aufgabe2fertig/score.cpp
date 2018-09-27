@@ -1,10 +1,14 @@
 //#include "score.h"
 #include <QFont>
 #include "game.h"
+#include <QTime>
+#include <QCoreApplication>
+
 
 
 
 extern game * gamee;
+
 
 
 
@@ -34,6 +38,8 @@ void score::decreaseLive()
     //gamee->player->setRect(0,0,120,25);
     gamee->player->setOpacity(0.6);
 
+
+
     }
 
     if(score1==1){
@@ -48,7 +54,19 @@ void score::decreaseLive()
         gamee->timer->stop();
         gamee->timer1->stop();
         gamee->timer2->stop();
-        //  enemiess->timer1->stop();
+//enemiess->timer1->stop();
+
+        //load game menu after death
+        //Problem: soll werte von live und score resetten
+        gamee->scene->addItem(gamee->startbuttonmain);
+        gamee->scene->addItem(gamee->quitbuttonmain);
+        gamee->scene->addItem(gamee->loadmain);
+
+
+
+        //game over und score einblenden nach letztem leben
+        //gamee->scene->addItem(gamee->score);
+        //gamee->scene->addItem(gamee->gameover);
 
 
     }
